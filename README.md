@@ -1,4 +1,5 @@
 Original file: https://github.com/londonappbrewery/flash-chat-flutter
+This stub is the updated version of the project after fixing the errors. 
 
 I have used the following these steps to update the file so that it can run on my PC (I am using Android Studio Arctic Fox & Android SDK 32):
 
@@ -16,7 +17,7 @@ Enable Flutter:
 3. Click Apply & OK. 
 4. Go to pubspec.yaml and click get dependencies & update. 
 
-Migrate to latest SDK:
+Migrate to latest SDK: 
 1. Run the code, you will get error because it is using old version. The console will give instruction to migrate to the latest version. Follow this step to migrate the project: https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects
 a)  If during Step 4 you have added this into AndroidManifest.xml 
             <!-- Theme to apply as soon as Flutter begins rendering frames -->
@@ -40,7 +41,7 @@ Please check your android/app/src/main/res/values/styles.xml & make sure the Nor
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
 
-3. In android/app/src/build.gradle: update compileSdkVersion and targetSdkVersion to latest version. Mine is SDK 32. 
+3. In android/app/src/build.gradle: update compileSdkVersion and targetSdkVersion to latest version installed. Mine is SDK 32. 
 
 android {
     compileSdkVersion 32 <------ Update this 
