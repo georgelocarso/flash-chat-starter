@@ -1,32 +1,60 @@
-![App Brewery Banner](https://github.com/londonappbrewery/Images/blob/master/AppBreweryBanner.png)
+Original file: https://github.com/londonappbrewery/flash-chat-flutter
 
+I have used the following these steps to update the file so that it can run on my PC (I am using Android Studio Arctic Fox & Android SDK 32):
 
-# Flash Chat ⚡️
+Enable Dart support:
+1. File > Setting > Languages & Frameworks > Dart: Tick 'Enable Dart Support for the project 'flash-chat-flutter'
+2. Locate Dart SDK path where you have installed it. Mine is in C:\tools\dart-sdk or C:\src\flutter\bin\cache\dart-sdk
+3. Enable Dart Support for the following modules: 
+- Project 'flash-chat-flutter'
+- 'flash-chat-flutter'
+5. Click Apply
 
-## Our Goal
+Enable Flutter: 
+1. File > Setting > Languages & Frameworks> Flutter
+2. Locate Flutter SDK. Mine is in C:\src\flutter
+3. Click Apply & OK. 
+4. Go to pubspec.yaml and click get dependencies & update. 
 
-The objective of this tutorial is to learn how to incorporate Firebase into our Flutter apps. We'll be using Firebase Cloud Firestore as well as the Firebase authentication package to equip our app with a cloud-based NoSQL database and secure authentication methods. 
+Migrate to latest SDK:
+1. Run the code, you will get error because it is using old version. The console will give instruction to migrate to the latest version. Follow this step to migrate the project: https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects
+a)  If during Step 4 you have added this into AndroidManifest.xml 
+            <!-- Theme to apply as soon as Flutter begins rendering frames -->
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme"
+                />
+Please check your android/app/src/main/res/values/styles.xml & make sure the NormalTheme exist: 
 
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
 
-## What you will create
+2. Update android/app/src/main/AndroidManifest.xml, add android:exported="true":
+       <activity
+            android:name=".MainActivity"
+            android:exported="true" <-------------Add this
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+        android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
 
-We’re going to build a modern messaging app where users can sign up and log in to chat.
+3. In android/app/src/build.gradle: update compileSdkVersion and targetSdkVersion to latest version. Mine is SDK 32. 
 
-![Finished App](https://github.com/londonappbrewery/Images/blob/master/flash_chat_flutter_demo.gif)
+android {
+    compileSdkVersion 32 <------ Update this 
 
-## What you will learn
+    lintOptions {
+        disable 'InvalidPackage'
+    }
 
-- How to incorporate Firebase into your Flutter projects.
-- How to use Firebase authentication to register and sign in users.
-- How to create beautiful animations using the Flutter Hero widget.
-- How to create custom aniamtions using Flutter's animation controller. 
-- Learn all about mixins and how they differ from superclasses.
-- Learn about Streams and how they work.
-- Learn to use ListViews to build scrolling views.
-- How to use Firebase Cloud Firestore to store and retrieve data on the fly.
-
-
-
->This is a companion project to The App Brewery's Complete Flutter Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
-
-![End Banner](https://github.com/londonappbrewery/Images/blob/master/readme-end-banner.png)
+    defaultConfig {
+        applicationId "co.appbrewery.bitcoin_ticker"
+        minSdkVersion 16
+        targetSdkVersion 32 <------ Update this 
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+	
+4. Run the code. It should be working
