@@ -57,5 +57,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-	
+    
+    ...
+}	
 4. Run the code. It should be working
