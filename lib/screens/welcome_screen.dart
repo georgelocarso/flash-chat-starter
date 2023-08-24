@@ -1,7 +1,6 @@
 // notes,   Custom Flutter Animations with the Animation Controller
 // minute 16 
 // test
-import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
@@ -22,6 +21,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   void initState() {
     super.initState();
 
+    print("Halo");
     controller = new AnimationController(
       duration: Duration(seconds: 1),
       vsync: this,
