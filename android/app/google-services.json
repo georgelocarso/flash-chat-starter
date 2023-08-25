@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438954771612",
+    "project_id": "flashchat-b3066",
+    "storage_bucket": "flashchat-b3066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438954771612:android:61b06d724760a01f065959",
+        "android_client_info": {
+          "package_name": "co.georgeken.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438954771612-59si32bp22slafmmp5o5q9cgr1f8a5ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ1NcNWyGgDhfopeS8q2scMOWtOduLHBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438954771612-59si32bp22slafmmp5o5q9cgr1f8a5ua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
