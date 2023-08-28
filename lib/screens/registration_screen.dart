@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/components/rounded_button.dart';
 import 'package:flash_chat/constants.dart';
+import 'package:flash_chat/screens/chat_screen.dart';
+
 
 class RegistrationScreen extends StatefulWidget {
   static final String id = "registrationscreen";
@@ -10,6 +13,23 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  late FirebaseAuth _auth;
+  void initFB()  {
+    
+    _auth = FirebaseAuth.instance;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    initFB();
+  }
+
+  late String email;
+  late String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +51,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
+              keyboardType: TextInputType.emailAddress,
+              textAlign: TextAlign.center,
               onChanged: (value) {
-                //Do something with the user input.
+                email = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                   hintText: "Email", hintStyle: TextStyle(color: Colors.black)),
@@ -41,8 +63,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 8.0,
             ),
             TextField(
+              obscureText: true,
+              textAlign: TextAlign.center,
               onChanged: (value) {
-                //Do something with the user input.
+                password = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                   hintText: "Password",
@@ -54,7 +78,27 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             RoundedButton(
               colour: Colors.pinkAccent,
               btnText: "Registration",
-              onPresse: () {},
+              onPressed: () async {
+                print(email);
+                print(password);
+                try {
+                  final newUser = await _auth.createUserWithEmailAndPassword(
+                    email: email,
+                    password: password,
+                  );
+
+                  FirebaseAuth.instance.authStateChanges().listen((User? newUser) {
+                    if (newUser != null) {
+                      // print(
+                      //     " Created!! FireBaseAuth.createUserWithEmailAndPassword");
+                      // print(newUser.uid);
+                      Navigator.pushNamed(context, ChatScreen.id);
+                    }
+                  });
+                } catch (e) {
+                  print(e);
+                }
+              },
             ),
           ],
         ),

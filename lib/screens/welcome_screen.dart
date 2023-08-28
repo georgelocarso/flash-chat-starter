@@ -6,6 +6,7 @@ import 'login_screen.dart';
 import 'registration_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flash_chat/components/rounded_button.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static final String id = "welcomescreen";
@@ -22,6 +23,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   void initState() {
     super.initState();
+    Firebase.initializeApp();
 
     print("Halo");
     controller = new AnimationController(
@@ -103,14 +105,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             RoundedButton(
               colour: Colors.lightBlueAccent,
               btnText: "Login",
-              onPresse: () {
+              onPressed: () {
                 Navigator.pushNamed(context, LoginScreen.id);
               },
             ),
             RoundedButton(
               colour: Colors.blueAccent,
               btnText: "Registration2",
-              onPresse: () {
+              onPressed: () {
                 Navigator.pushNamed(context, RegistrationScreen.id);
               },
             ),
